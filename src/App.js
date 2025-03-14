@@ -1,24 +1,14 @@
-import logo from "./logo.svg";
 import "./App.css";
+import Sidebar from "./components/Sidebar/Sidebar.js";
+import "./components/Sidebar/Sidebar.css";
+// import TasksManager from "./utils/Tasks/Tasks.js";
 
 function App() {
+    // const tasks = TasksManager();
     return (
         <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <p>boo.</p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
+            <Sidebar color="red"></Sidebar>
+            <header className="App-header"></header>
         </div>
     );
 }
