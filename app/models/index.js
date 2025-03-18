@@ -8,7 +8,7 @@ const sequelize = new Sequelize(
   USER,
   PASSWORD,
   {
-    host: HOST,
+    host: process.env.DB_URL,
     dialect: _dialect,
     pool: {
       max: _pool.max,

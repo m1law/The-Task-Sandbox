@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
 
 var corsOptions = {
   origin: "http://localhost:4000"
