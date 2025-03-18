@@ -1,39 +1,38 @@
 import { useState } from "react";
 
-// class TasksManager {
-//     constructor(props) {
-//         this.taskList = [
-//             // { id: 1, description: "Please work." },
-//             // { id: 2, description: "Pretty please?" },
-//             "please work.",
-//             "Pretty Please?",
-//             "I beg of you!",
-//         ];
-//     }
-
-//     CreateTask({ task }) {
-//         // this.taskList.push({ id: this.taskList.length, description: task });
-//         this.taskList.push(task);
-//         // console.log(task);
-//         // console.log(this.taskList);
-//     }
-
-//     GetTasks() {
-//         return this.taskList;
-//     }
-// }
-
 function TasksManager() {
     const [taskList, setTaskList] = useState([
-        "Hello world!",
-        "This is a very wonderful",
+        { id: 0, description: "Hello world!", completed: false },
+        { id: 1, description: "This is a very wonderful", completed: false },
     ]);
 
     const addTask = (task) => {
-        setTaskList([...taskList, task]);
+        setTaskList([
+            ...taskList,
+            {
+                id: taskList[taskList.length - 1].id + 1,
+                description: task,
+                completed: false,
+            },
+        ]);
     };
 
-    return { taskList, addTask };
+    const deleteTask = (taskID) => {
+        console.log("delete this task, ", taskList[taskID].description);
+    };
+
+    const deleteSpecificTask = (taskIndex) => {
+        console.log("delete this task, ", taskList[taskIndex].description);
+    };
+
+    const editTask = (taskID) => {
+        console.log(
+            "you are getting this task: ",
+            taskList[taskID].description
+        );
+    };
+
+    return { taskList, addTask, deleteTask };
 }
 
 export default TasksManager;
