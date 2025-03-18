@@ -7,10 +7,10 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const port = 3000
+const port = process.env.PORT || 4000;
 
 var corsOptions = {
-  origin: "http://localhost:3000"
+  origin: "http://localhost:4000"
 };
 app.use(cors(corsOptions));
 app.use(express.static(path.join(__dirname, 'build')));
