@@ -9,6 +9,7 @@ const sequelize = new Sequelize(
   PASSWORD,
   {
     host: process.env.DB_URL,
+    port: process.env.PG_PORT,
     dialect: _dialect,
     pool: {
       max: _pool.max,
