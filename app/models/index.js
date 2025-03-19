@@ -1,7 +1,8 @@
-import { DB, USER, PASSWORD, HOST, dialect as _dialect, pool as _pool } from "../config/db.config.js";
+import { DB, USER, PASSWORD, dialect as _dialect, pool as _pool } from "../config/db.config.js";
 import userModel from "./user.model.js";
 import roleModel from "./role.model.js";
 
+// TODO: this needs to pull from environment variables (process.env) instead of db.config.js for render.com
 import Sequelize from "sequelize";
 const sequelize = new Sequelize(
   DB,
@@ -25,6 +26,7 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
+// TODO: take out roles carefully since we don't need it. Start with frontend stuff and work to backend
 db.user = userModel(sequelize, Sequelize);
 db.role = roleModel(sequelize, Sequelize);
 

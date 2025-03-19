@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 
@@ -10,18 +10,13 @@ import Register from "./components/Register.js";
 import Home from "./components/Home.js";
 import Profile from "./components/Profile.js";
 import BoardUser from "./components/BoardUser.js";
-import BoardModerator from "./components/BoardModerator.js";
-import BoardAdmin from "./components/BoardAdmin.js";
 
 import { logout } from "./actions/auth.js";
 import { clearMessage } from "./actions/message.js";
 
-// import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus.js";
 
 const App = () => {
-  const [showModeratorBoard, setShowModeratorBoard] = useState(false);
-  const [showAdminBoard, setShowAdminBoard] = useState(false);
 
   const { user: currentUser } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -39,13 +34,6 @@ const App = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (currentUser) {
-      setShowModeratorBoard(currentUser.roles.includes("ROLE_MODERATOR"));
-      setShowAdminBoard(currentUser.roles.includes("ROLE_ADMIN"));
-    } else {
-      setShowModeratorBoard(false);
-      setShowAdminBoard(false);
-    }
 
     EventBus.on("logout", () => {
       logOut();
@@ -68,22 +56,6 @@ const App = () => {
               Home
             </Link>
           </li>
-
-          {showModeratorBoard && (
-            <li className="nav-item">
-              <Link to={"/mod"} className="nav-link">
-                Moderator Board
-              </Link>
-            </li>
-          )}
-
-          {showAdminBoard && (
-            <li className="nav-item">
-              <Link to={"/admin"} className="nav-link">
-                Admin Board
-              </Link>
-            </li>
-          )}
 
           {currentUser && (
             <li className="nav-item">
@@ -132,12 +104,9 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/user" element={<BoardUser />} />
-          <Route path="/mod" element={<BoardModerator />} />
-          <Route path="/admin" element={<BoardAdmin />} />
         </Routes>
       </div>
 
-      {/* <AuthVerify logOut={logOut}/> */}
     </div>
   );
 };

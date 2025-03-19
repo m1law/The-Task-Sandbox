@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// TODO don't hardcode server here
 const API_URL = "http://localhost:3000/api/auth/";
 
 const register = (username, email, password) => {

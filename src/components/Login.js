@@ -4,16 +4,6 @@ import { Navigate, useNavigate  } from 'react-router-dom';
 
 import { login } from "../actions/auth.js";
 
-// const required = (value) => {
-//   if (!value) {
-//     return (
-//       <div className="alert alert-danger" role="alert">
-//         This field is required!
-//       </div>
-//     );
-//   }
-// };
-
 const Login = (props) => {
   let navigate = useNavigate();
 

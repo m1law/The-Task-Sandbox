@@ -9,8 +9,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const port = process.env.PORT || 3000;
 
+// TODO need to figure out cors for render.com
 var corsOptions = {
-  origin: "http://localhost:4000"
+  origin: "http://localhost:3000"
 };
 app.use(cors(corsOptions));
 app.use(express.static(path.join(__dirname, 'build')));
@@ -21,7 +22,6 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 })
@@ -30,9 +30,8 @@ app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })
 
+// database init
 import db from "./app/models/index.js";
-const Role = db.role;
-
 db.sequelize.sync();
 
 // routes
@@ -41,19 +40,3 @@ authRoute(app);
 import userRoute from "./app/routes/user.routes.js";
 userRoute(app);
 
-function initial() {
-  Role.create({
-    id: 1,
-    name: "user"
-  });
- 
-  Role.create({
-    id: 2,
-    name: "moderator"
-  });
- 
-  Role.create({
-    id: 3,
-    name: "admin"
-  });
-}
