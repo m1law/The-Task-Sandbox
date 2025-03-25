@@ -1,12 +1,12 @@
 import db from "../models/index.js";
 import config from "../config/auth.config.js";
-const User = db.user;
-const Role = db.role;
-
-const Op = db.Sequelize.Op;
 
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+
+const User = db.user;
+const Role = db.role;
+const Op = db.Sequelize.Op;
 
 export function signup(req, res) {
   // Save User to Database
