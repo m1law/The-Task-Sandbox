@@ -10,6 +10,7 @@ import Register from "./components/Register.js";
 import Home from "./components/Home.js";
 import Profile from "./components/Profile.js";
 import BoardUser from "./components/BoardUser.js";
+import Create from "./components/TaskList.js";
 
 import { logout } from "./actions/auth.js";
 import { clearMessage } from "./actions/message.js";
@@ -17,7 +18,6 @@ import { clearMessage } from "./actions/message.js";
 import EventBus from "./common/EventBus.js";
 
 const App = () => {
-
   const { user: currentUser } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -34,7 +34,6 @@ const App = () => {
   }, [dispatch]);
 
   useEffect(() => {
-
     EventBus.on("logout", () => {
       logOut();
     });
@@ -92,6 +91,12 @@ const App = () => {
                 Sign Up
               </Link>
             </li>
+
+            <li className="nav-item">
+              <Link to={"/task"} className="nav-link">
+                Create New Task
+              </Link>
+            </li>
           </div>
         )}
       </nav>
@@ -104,9 +109,9 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/user" element={<BoardUser />} />
+          <Route path="/task" element={<Create />} />
         </Routes>
       </div>
-
     </div>
   );
 };

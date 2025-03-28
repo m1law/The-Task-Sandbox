@@ -11,6 +11,7 @@ import db from "./app/models/index.js";
 // for importing routes
 import authRoute from "./app/routes/auth.routes.js";
 import userRoute from "./app/routes/user.routes.js";
+import taskRoute from "./app/routes/task.routes.js";
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -44,3 +45,4 @@ db.sequelize.sync();
 // routes
 authRoute(app);
 userRoute(app);
+taskRoute(app);
