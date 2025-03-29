@@ -1,5 +1,5 @@
 import "./Sidebar.css";
-import Tasks from "../Tasks/Tasks";
+import Tasks from "../Tasks/Tasks.js";
 // import { useState } from "react";
 
 export default function Sidebar({ color, tasks }) {
