@@ -1,6 +1,8 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect, useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
+
+import { createClient } from "@supabase/supabase-js";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -10,7 +12,7 @@ import Register from "./components/Register.js";
 import Home from "./components/Home.js";
 import Profile from "./components/Profile.js";
 import BoardUser from "./components/BoardUser.js";
-import Create from "./components/TaskList.js";
+import TaskList from "./components/TaskList.js";
 // import Sidebar from "./components/Sidebar/Sidebar.js";
 // import "./components/Sidebar/Sidebar.css";
 // import Whiteboard from "./components/Whiteboard/Whiteboard.js";
@@ -124,7 +126,7 @@ const App = () => {
                     <Route path="/register" element={<Register />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/user" element={<BoardUser />} />
-                    <Route path="/task" element={<Create />} />
+                    <Route path="/task" element={<TaskList />} />
                     <Route path="/sandbox" element={<Sandbox />} />
                 </Routes>
             </div>

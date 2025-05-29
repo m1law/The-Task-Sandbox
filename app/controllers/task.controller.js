@@ -1,20 +1,26 @@
-import db from "../models/index.js";
-
-const Task = db.task;
+import supabase from "../models/index.js";
 
 export function create(req, res) {
-  console.log("we are in the controller rn");
-  // Save User to Database
-  Task.create({
-    // id: whatever,
-    description: req.body.description,
-  })
-    .then(() => {
-      res.send({ message: "Task was created successfully!" });
-    })
-    .catch((err) => {
-      res.status(500).send({ message: err.message });
+    // Save Task to Database
+    const { error } = supabase.from("the_task").insert({
+        description: req.body.description,
     });
+    if (error) {
+        res.status(500).send({ message: error.message });
+    } else {
+        res.send({ message: "Task created successfully!" });
+    }
+
+    // Task.create({
+    //     // id: whatever,
+    //     description: req.body.description,
+    // })
+    //     .then(() => {
+    //         res.send({ message: "Task was created successfully!" });
+    //     })
+    //     .catch((err) => {
+    //         res.status(500).send({ message: err.message });
+    //     });
 }
 
 // export function signin(req, res) {

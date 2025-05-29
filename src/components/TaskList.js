@@ -1,23 +1,34 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { create } from "../actions/task.js";
+import { create, fetch } from "../actions/task.js";
 
-const Create = () => {
-  // put a useState here for storing the actual description of a task
-  const dispatch = useDispatch();
-  const handleCreate = (e) => {
-    e.preventDefault();
-    dispatch(
-      create("If you can see this task, the message has made it successfully.")
+const TaskList = () => {
+    const dispatch = useDispatch();
+
+    const handleCreate = async () => {
+        try {
+            await dispatch(create("New Task Description"));
+            alert("Task created!");
+        } catch (e) {
+            alert("Error creating task");
+        }
+    };
+
+    const handleFetch = async () => {
+        try {
+            const tasks = await dispatch(fetch());
+            console.log(tasks);
+        } catch (e) {
+            alert("Error fetching tasks");
+        }
+    };
+
+    return (
+        <div>
+            <button onClick={handleCreate}>Create Task</button>
+            <button onClick={handleFetch}>Fetch Tasks</button>
+        </div>
     );
-  };
-  return (
-    <div className="card card-container">
-      <button className="btn btn-primary" onClick={handleCreate}>
-        Click me to make a task!
-      </button>
-    </div>
-  );
 };
 
-export default Create;
+export default TaskList;

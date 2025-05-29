@@ -6,7 +6,6 @@ import { fileURLToPath } from "url";
 import { dirname } from "path";
 
 // for initializing database
-import db from "./app/models/index.js";
 
 // for importing routes
 import authRoute from "./app/routes/auth.routes.js";
@@ -16,11 +15,11 @@ import taskRoute from "./app/routes/task.routes.js";
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
 // TODO need to figure out cors for render.com
 var corsOptions = {
-  origin: "http://localhost:3000",
+    origin: "http://localhost:3000",
 };
 app.use(cors(corsOptions));
 app.use(express.static(path.join(__dirname, "build")));
@@ -32,15 +31,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
+    res.sendFile(path.join(__dirname, "app", "index.html"));
 });
 
 app.listen(port, () => {
-  console.log(`App running on port ${port}.`);
+    console.log(`App running on port ${port}.`);
 });
-
-// database init
-db.sequelize.sync();
 
 // routes
 authRoute(app);
