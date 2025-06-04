@@ -31,3 +31,44 @@ export const fetch = () => async (dispatch) => {
         return Promise.reject(error);
     }
 };
+
+export const update = (id, updates) => async (dispatch) => {
+    try {
+        const data = await TaskService.update(id, updates);
+        dispatch({ type: SET_MESSAGE, payload: "Task updated successfully!" });
+        return Promise.resolve(data);
+    } catch (error) {
+        dispatch({
+            type: SET_MESSAGE,
+            payload: error.message || "Error updating task",
+        });
+        return Promise.reject(error);
+    }
+};
+
+export const remove = (id) => async (dispatch) => {
+    try {
+        const data = await TaskService.remove(id);
+        dispatch({ type: SET_MESSAGE, payload: "Task deleted successfully!" });
+        return Promise.resolve(data);
+    } catch (error) {
+        dispatch({
+            type: SET_MESSAGE,
+            payload: error.message || "Error deleting task",
+        });
+        return Promise.reject(error);
+    }
+};
+
+export const getById = (id) => async (dispatch) => {
+    try {
+        const data = await TaskService.getById(id);
+        return Promise.resolve(data);
+    } catch (error) {
+        dispatch({
+            type: SET_MESSAGE,
+            payload: error.message || "Error fetching task",
+        });
+        return Promise.reject(error);
+    }
+};

@@ -22,6 +22,41 @@ async function fetch() {
     }
     return data;
 }
+
+async function update(id, updates) {
+    const { error, data } = await supabase
+        .from("the_task")
+        .update(updates)
+        .eq("id", id);
+    if (error) {
+        return error;
+    }
+    return data;
+}
+
+async function remove(id) {
+    const { error, data } = await supabase
+        .from("the_task")
+        .delete()
+        .eq("id", id);
+    if (error) {
+        return error;
+    }
+    return data;
+}
+
+async function getById(id) {
+    const { error, data } = await supabase
+        .from("the_task")
+        .select()
+        .eq("id", id)
+        .single();
+    if (error) {
+        return error;
+    }
+    return data;
+}
+
 // const create = (description) => {
 // console.log("we in task service rn");
 // console.log(API_URL + "create");
@@ -33,4 +68,7 @@ async function fetch() {
 export default {
     create,
     fetch,
+    update,
+    remove,
+    getById,
 };

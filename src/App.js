@@ -105,7 +105,7 @@ const App = () => {
 
                         <li className="nav-item">
                             <Link to={"/task"} className="nav-link">
-                                Create New Task
+                                Task Testing
                             </Link>
                         </li>
 
